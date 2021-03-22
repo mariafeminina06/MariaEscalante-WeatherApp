@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>World Weather</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" href="src/index.css" />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@600&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Italianno&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+
+    <script
+      src="https://kit.fontawesome.com/7a258fe412.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>World Weather Update</h1>
+        <h2>
+          wherever you go, whatever the weather,
+          <br />always bring your own sunshine
+        </h2>
+        <div class="box"></div>
+      </header>
+
+      <main>
+        <div class="search-engine">
+          <div class="card main-section">
+            <div class="card-body">
+              <form id="search-form">
+                <div class="row">
+                  <div class="col-6">
+                    <div class="mb-3">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="search-bar"
+                        placeholder="Search a city"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-2">
+                    <button
+                      type="button"
+                      class="btn btn-secondary"
+                      id="get-my-location"
+                    >
+                      <i class="fas fa-map-marker-alt"></i>
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                      <i class="fas fa-search"></i>
+                    </button>
+                  </div>
+                </div>
+              </form>
+              <br />
+              <h6 id="current-time"></h6>
+            </div>
+          </div>
+        </div>
+        <div class="current-city">
+          <div class="card main-section">
+            <div class="card-body">
+              <h3 id="current-city">Tokyo, Japan</h3>
+              <div class="date">
+                <p>
+                  Time Now: 0200H
+                  <br />
+                  Date: 04 March 2021
+                  <br />
+                  Day: Thursday
+                </p>
+              </div>
+              <div class="current-weather">
+                <div class="row">
+                  <div class="col-7 temp-icon">
+                    <i class="fas fa-cloud"></i>
+                    <span
+                      class="current-Celsius-temperature"
+                      id="current-temperature"
+                      >5</span
+                    ><span class="degree-units">
+                      <a href="#" id="convert-Celsius">°C </a>|
+                      <a href="#" id="convert-Fahrenheit">°F</a></span
+                    >
+                  </div>
+                  <div class="col-5">
+                    <ul>
+                      <li
+                        class="weather-description"
+                        id="current-weather-description"
+                      >
+                        Cloudy
+                      </li>
+                      <li id="feel-temp">Feels like: 10°C</li>
+                      <li id="current-min-temp">Min:0°C</li>
+                      <li id="current-max-temp">Max:10°C</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="following-days">
+          <div class="card main-section">
+            <div class="card-body">
+              <h3>Weather for the next 5 days</h3>
+              <img
+                src="img/undraw2_Weather_re_qsmd.svg"
+                alt="weather forecast"
+              />
+              <div class="row">
+                <div class="col">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="day">Monday</div>
+                      <br />
+                      <i class="fas fa-cloud"></i>
+                      <div class="temp"><strong>15°</strong> 5°</div>
+                      <br />
+                      <div class="weather-description">Cloudy</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="day">Tuesday</div>
+                      <br />
+                      <i class="fas fa-cloud"></i>
+                      <div class="temp"><strong>15°</strong> 5°</div>
+                      <br />
+                      <div class="weather-description">Cloudy</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="day">Wednesday</div>
+                      <br />
+                      <i class="fas fa-cloud"></i>
+                      <div class="temp"><strong>15°</strong> 5°</div>
+                      <br />
+                      <div class="weather-description">Cloudy</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="day">Thursday</div>
+                      <br />
+                      <i class="fas fa-cloud"></i>
+                      <div class="temp"><strong>15°</strong> 5°</div>
+                      <br />
+                      <div class="weather-description">Cloudy</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="day">Friday</div>
+                      <br />
+                      <i class="fas fa-cloud"></i>
+                      <div class="temp"><strong>15°</strong> 5°</div>
+                      <br />
+                      <div class="weather-description">Cloudy</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+      <footer>
+        Coded by: <br />
+        Maria Feminina Escalante
+      </footer>
+    </div>
+    <script src="src/index.js"></script>
+  </body>
+</html>

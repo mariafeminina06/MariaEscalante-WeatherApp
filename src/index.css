@@ -1,0 +1,162 @@
+body {
+  background-color: rosybrown;
+  background-image: url(https://images.unsplash.com/photo-1436891620584-47fd0e565afb?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTN8fHNreXxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60);
+  background-size: cover;
+  margin: 0 auto;
+  width: 875px;
+  min-width: 400px;
+  max-width: 800px;
+  font-family: "Open Sans", sans-serif;
+}
+
+header {
+  margin: 30px auto 20px;
+  background-image: url(../img/WeatherHeader.jpg);
+  border-radius: 8px;
+  background-color: orangered;
+  background-size: auto;
+  background-position: bottom;
+  width: 900px;
+  height: 600px;
+}
+
+header,
+main {
+  box-shadow: 0 3.1px 4.2px -3px rgba(0, 0, 0, 0.157),
+    0 8.6px 11.5px -3px rgba(0, 0, 0, 0.225),
+    0 20.8px 27.7px -3px rgba(0, 0, 0, 0.293),
+    0 69px 92px -3px rgba(0, 0, 0, 0.45);
+}
+
+h1,
+h2 {
+  margin: 0 auto;
+  width: 800px;
+  height: 300px;
+  text-align: center;
+  color: #ffffff;
+  position: relative;
+  z-index: 2;
+  background-image: linear-gradient(
+    to top,
+    #fcc5e4 0%,
+    #fda34b 15%,
+    #f7eef0 35%,
+    #c8699e 52%,
+    #090b54 71%,
+    #0c1db8 87%,
+    #020f75 100%
+  );
+  width: auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+h1 {
+  font-family: "Shippori Mincho", serif;
+  padding-top: 200px;
+  font-size: 65px;
+  top: 10px;
+}
+
+h2 {
+  font-family: "Italianno", cursive;
+  font-size: 40px;
+  bottom: 5px;
+}
+
+h3 {
+  font-family: "Shippori Mincho", serif;
+  margin: 30px 50px;
+}
+
+ul {
+  list-style: none;
+  text-align: left;
+  position: relative;
+  top: 30px;
+}
+
+main {
+  border: 3px solid grey;
+  border-radius: 10px;
+  margin-left: 10px;
+  padding: 20px;
+  width: 875px;
+}
+
+footer {
+  font-family: "Shippori Mincho", serif;
+  color: #ffffff67;
+  text-align: center;
+  margin: 35px 0;
+  font-size: 15px;
+  width: 800px;
+}
+
+img {
+  width: 350px;
+  display: block;
+  margin: 20px auto;
+}
+
+.box {
+  background: linear-gradient(to left, #0c0c0cce, #77757560, #0c0c0cce);
+  width: 900px;
+  height: 250px;
+  position: relative;
+  bottom: 430px;
+}
+
+.card {
+  background-color: #ffffff67;
+  padding: 20px 5px;
+}
+
+.date {
+  margin-left: 50px;
+}
+
+.current-weather {
+  text-align: center;
+  margin-left: 50px;
+}
+
+.temp-icon {
+  text-align: right;
+}
+
+.current-city .fas {
+  font-size: 100px;
+  color: #1559bf;
+  margin-right: 30px;
+}
+
+.current-Celsius-temperature {
+  font-size: 100px;
+}
+
+.weather-description {
+  text-transform: capitalize;
+}
+
+.degree-units {
+  position: relative;
+  bottom: 60px;
+}
+
+.following-days {
+  align-content: center;
+  text-align: center;
+  font-size: 18px;
+}
+
+.following-days .day {
+  font-size: 20px;
+}
+
+.following-days .fas {
+  color: #1559bf;
+  font-size: 50px;
+}
