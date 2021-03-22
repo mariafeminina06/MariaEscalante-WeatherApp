@@ -96,6 +96,59 @@ CelsiusLink.addEventListener("click", convertToCelsius);
 // trial code
 
 function showWeather(response) {
+  let localTime = now.getTime();
+  let localOffset = now.getTimezoneOffset() * 60000;
+  let utc = localTime + localOffset;
+  let cityOffset = response.data.timezone * 1000;
+  let foreignTime = new Date(utc + cityOffset);
+  let foreignHour = foreignTime.getHours();
+  if (foreignHour < 10) {
+    foreignHour = `0${foreignHour}`;
+  }
+  let foreignMinutes = foreignTime.getMinutes();
+  if (foreignMinutes < 10) {
+    foreignMinutes = `0${foreignMinutes}`;
+  }
+
+  let foreignDate = foreignTime.getDate();
+  if (foreignDate < 10) {
+    foreignDate = `0${foreignDate}`;
+  }
+
+  let months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  let foreignMonth = months[foreignTime.getMonth()];
+
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+
+  let foreignCityTimeElement = document.querySelector("#foreign-time");
+  foreignCityTimeElement.innerHTML = `Time Now: ${foreignHour}${foreignMinutes}H`;
+  let foreignDateElement = document.querySelector("#foreign-date");
+  foreignDateElement.innerHTML = `Date: ${foreignDate} ${foreignMonth} ${foreignTime.getFullYear()}`;
+
+  let foreignDayElement = document.querySelector("#foreign-day");
+  foreignDayElement.innerHTML = `Day: ${days[foreignTime.getDay()]}`;
+
   let currentTemp = Math.round(response.data.main.temp);
   let feelTemperature = Math.round(response.data.main.feels_like);
   let currentMinTemp = Math.round(response.data.main.temp_min);
