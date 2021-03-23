@@ -67,7 +67,7 @@ function searchInfo(event) {
 // trial
 
 function updateStatus(response) {
-  function showWeather() {
+  function showCurrentWeather() {
     let currentTemp = Math.round(response.data.main.temp);
     let feelTemperature = Math.round(response.data.main.feels_like);
     let currentMinTemp = Math.round(response.data.main.temp_min);
@@ -136,17 +136,17 @@ function updateStatus(response) {
       "Saturday",
     ];
 
+    let foreignDateFormat = `${foreignCalendarDate} ${foreignMonth} ${foreignTime.getFullYear()}`;
     let foreignCityTimeElement = document.querySelector("#foreign-time");
     foreignCityTimeElement.innerHTML = `Time Now: ${foreignHour}${foreignMinutes}H`;
     let foreignDateElement = document.querySelector("#foreign-date");
-    foreignDateElement.innerHTML = `Date: ${foreignCalendarDate} ${foreignMonth} ${foreignTime.getFullYear()}`;
+    foreignDateElement.innerHTML = `Date: ${foreignDateFormat}`;
 
     let foreignDayElement = document.querySelector("#foreign-day");
     foreignDayElement.innerHTML = `Day: ${days[foreignTime.getDay()]}`;
   }
 
-  showWeather();
-  getTimeinDestinationCity();
+  return showCurrentWeather(), getTimeinDestinationCity();
 }
 
 let now = new Date();
