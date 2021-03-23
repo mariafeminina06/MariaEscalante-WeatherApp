@@ -51,7 +51,7 @@ function getLocation(position) {
   let latitude = position.coords.latitude;
   let longitude = position.coords.longitude;
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${units}`;
-  axios.get(apiUrl).then(updateStatus);
+  axios.get(apiUrl).then(updateCurrentWeatherStatus);
 }
 
 function searchInfo(event) {
@@ -61,104 +61,99 @@ function searchInfo(event) {
 
   let apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
 
-  axios.get(apiURL).then(updateStatus);
+  axios.get(apiURL).then(updateCurrentWeatherStatus);
 }
 
-// trial
-
-function updateStatus(response) {
-  function showCurrentWeather() {
-    let currentTemp = Math.round(response.data.main.temp);
-    let feelTemperature = Math.round(response.data.main.feels_like);
-    let currentMinTemp = Math.round(response.data.main.temp_min);
-    let currentMaxTemp = Math.round(response.data.main.temp_max);
-    let cityDisplayName = response.data.name;
-    let countryDisplayName = response.data.sys.country;
-    let currentLocation = document.querySelector("#current-city");
-    currentLocation.innerHTML = `${cityDisplayName}, ${countryDisplayName}`;
-    let currentTempElement = document.querySelector("#current-temperature");
-    currentTempElement.innerHTML = currentTemp;
-    let weatherDescriptionElement = document.querySelector(
-      "#current-weather-description"
-    );
-    weatherDescriptionElement.innerHTML = response.data.weather[0].description;
-    let feelElement = document.querySelector("#feel-temp");
-    feelElement.innerHTML = `Feels like: ${feelTemperature}°`;
-    let currentMinTempElement = document.querySelector("#current-min-temp");
-    currentMinTempElement.innerHTML = `Min: ${currentMinTemp}°`;
-    let currentMaxTempElement = document.querySelector("#current-max-temp");
-    currentMaxTempElement.innerHTML = `Max: ${currentMaxTemp}°`;
-    let currentWeatherIconElement = document.querySelector(
-      "#current-weather-icon"
-    );
-    let iconNumber = response.data.weather[0].icon;
-    currentWeatherIconElement.setAttribute(
-      "src",
-      `https://openweathermap.org/img/wn/${iconNumber}@2x.png`
-    );
-    currentWeatherIconElement.setAttribute(
-      "alt",
-      response.data.weather[0].description
-    );
+function getTimeinDestinationCity(timestamp) {
+  let localTime = now.getTime();
+  let localOffset = now.getTimezoneOffset() * 60000;
+  let utc = localTime + localOffset;
+  let foreignTime = new Date(utc + timestamp);
+  let foreignHour = foreignTime.getHours();
+  if (foreignHour < 10) {
+    foreignHour = `0${foreignHour}`;
+  }
+  let foreignMinutes = foreignTime.getMinutes();
+  if (foreignMinutes < 10) {
+    foreignMinutes = `0${foreignMinutes}`;
   }
 
-  function getTimeinDestinationCity() {
-    let localTime = now.getTime();
-    let localOffset = now.getTimezoneOffset() * 60000;
-    let utc = localTime + localOffset;
-    let cityOffset = response.data.timezone * 1000;
-    let foreignTime = new Date(utc + cityOffset);
-    let foreignHour = foreignTime.getHours();
-    if (foreignHour < 10) {
-      foreignHour = `0${foreignHour}`;
-    }
-    let foreignMinutes = foreignTime.getMinutes();
-    if (foreignMinutes < 10) {
-      foreignMinutes = `0${foreignMinutes}`;
-    }
-
-    let foreignCalendarDate = foreignTime.getDate();
-    if (foreignCalendarDate < 10) {
-      foreignCalendarDate = `0${foreignCalendarDate}`;
-    }
-
-    let months = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
-    ];
-    let foreignMonth = months[foreignTime.getMonth()];
-
-    let days = [
-      "Sunday",
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-    ];
-
-    let foreignDateFormat = `${foreignCalendarDate} ${foreignMonth} ${foreignTime.getFullYear()}`;
-    let foreignCityTimeElement = document.querySelector("#foreign-time");
-    foreignCityTimeElement.innerHTML = `Time Now: ${foreignHour}${foreignMinutes}H`;
-    let foreignDateElement = document.querySelector("#foreign-date");
-    foreignDateElement.innerHTML = `Date: ${foreignDateFormat}`;
-
-    let foreignDayElement = document.querySelector("#foreign-day");
-    foreignDayElement.innerHTML = `Day: ${days[foreignTime.getDay()]}`;
+  let foreignCalendarDate = foreignTime.getDate();
+  if (foreignCalendarDate < 10) {
+    foreignCalendarDate = `0${foreignCalendarDate}`;
   }
 
-  return showCurrentWeather(), getTimeinDestinationCity();
+  let months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  let foreignMonth = months[foreignTime.getMonth()];
+
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+
+  let foreignDateFormat = `${foreignCalendarDate} ${foreignMonth} ${foreignTime.getFullYear()}`;
+  let foreignCityTimeElement = document.querySelector("#foreign-time");
+  foreignCityTimeElement.innerHTML = `Time Now: ${foreignHour}${foreignMinutes}H`;
+  let foreignDateElement = document.querySelector("#foreign-date");
+  foreignDateElement.innerHTML = `Date: ${foreignDateFormat}`;
+
+  let foreignDayElement = document.querySelector("#foreign-day");
+  foreignDayElement.innerHTML = `Day: ${days[foreignTime.getDay()]}`;
+}
+
+function updateCurrentWeatherStatus(response) {
+  let currentTemp = Math.round(response.data.main.temp);
+  let feelTemperature = Math.round(response.data.main.feels_like);
+  let currentMinTemp = Math.round(response.data.main.temp_min);
+  let currentMaxTemp = Math.round(response.data.main.temp_max);
+  let cityDisplayName = response.data.name;
+  let countryDisplayName = response.data.sys.country;
+  let currentLocation = document.querySelector("#current-city");
+  currentLocation.innerHTML = `${cityDisplayName}, ${countryDisplayName}`;
+  let currentTempElement = document.querySelector("#current-temperature");
+  currentTempElement.innerHTML = currentTemp;
+  let weatherDescriptionElement = document.querySelector(
+    "#current-weather-description"
+  );
+  weatherDescriptionElement.innerHTML = response.data.weather[0].description;
+  let feelElement = document.querySelector("#feel-temp");
+  feelElement.innerHTML = `Feels like: ${feelTemperature}°`;
+  let currentMinTempElement = document.querySelector("#current-min-temp");
+  currentMinTempElement.innerHTML = `Min: ${currentMinTemp}°`;
+  let currentMaxTempElement = document.querySelector("#current-max-temp");
+  currentMaxTempElement.innerHTML = `Max: ${currentMaxTemp}°`;
+  let currentWeatherIconElement = document.querySelector(
+    "#current-weather-icon"
+  );
+  let iconNumber = response.data.weather[0].icon;
+  currentWeatherIconElement.setAttribute(
+    "src",
+    `https://openweathermap.org/img/wn/${iconNumber}@2x.png`
+  );
+  currentWeatherIconElement.setAttribute(
+    "alt",
+    response.data.weather[0].description
+  );
+
+  let cityOffset = getTimeinDestinationCity(response.data.timezone * 1000);
 }
 
 let now = new Date();
@@ -177,7 +172,7 @@ let city = currentCity.innerHTML;
 let units = "metric";
 let apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
 
-axios.get(apiURL).then(updateStatus);
+axios.get(apiURL).then(updateCurrentWeatherStatus);
 
 //🙀Bonus Feature
 //Display a fake temperature (i.e 17) in Celsius and add a link to convert it to Fahrenheit. When clicking on it, it should convert the temperature to Fahrenheit. When clicking on Celsius, it should convert it back to Celsius.
@@ -202,5 +197,3 @@ fahrenheitLink.addEventListener("click", convertToFahrenheit);
 
 let CelsiusLink = document.querySelector("#convert-Celsius");
 CelsiusLink.addEventListener("click", convertToCelsius);
-
-// trial code
