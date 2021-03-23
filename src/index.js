@@ -88,9 +88,21 @@ function updateStatus(response) {
     currentMinTempElement.innerHTML = `Min: ${currentMinTemp}°`;
     let currentMaxTempElement = document.querySelector("#current-max-temp");
     currentMaxTempElement.innerHTML = `Max: ${currentMaxTemp}°`;
+    let currentWeatherIconElement = document.querySelector(
+      "#current-weather-icon"
+    );
+    let iconNumber = response.data.weather[0].icon;
+    currentWeatherIconElement.setAttribute(
+      "src",
+      `http://openweathermap.org/img/wn/${iconNumber}@2x.png`
+    );
+    currentWeatherIconElement.setAttribute(
+      "alt",
+      response.data.weather[0].description
+    );
   }
 
-  function getTimeinDestinationCity(reponse) {
+  function getTimeinDestinationCity() {
     let localTime = now.getTime();
     let localOffset = now.getTimezoneOffset() * 60000;
     let utc = localTime + localOffset;

@@ -127,10 +127,13 @@ img {
   text-align: right;
 }
 
-.current-city .fas {
-  font-size: 100px;
-  color: #1559bf;
-  margin-right: 30px;
+.current-weather-icon {
+  display: block;
+  width: 200px;
+  margin: 0;
+  position: relative;
+  left: 40px;
+  bottom: 10px;
 }
 
 .current-Celsius-temperature {
