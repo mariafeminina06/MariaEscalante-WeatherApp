@@ -171,7 +171,17 @@ img {
   width: 200px;
   border: none;
   filter: drop-shadow(0 5px 3px black);
-  padding: 0;
+  padding-left: 10px;
   cursor: pointer;
   margin: 0 auto;
+}
+
+.github-link {
+  color: #ffffff67;
+  text-decoration: none;
+}
+
+.github-link:hover {
+  color: #ffffff67;
+  text-decoration: underline;
 }
