@@ -94,7 +94,7 @@ function updateStatus(response) {
     let iconNumber = response.data.weather[0].icon;
     currentWeatherIconElement.setAttribute(
       "src",
-      `http://openweathermap.org/img/wn/${iconNumber}@2x.png`
+      `https://openweathermap.org/img/wn/${iconNumber}@2x.png`
     );
     currentWeatherIconElement.setAttribute(
       "alt",
