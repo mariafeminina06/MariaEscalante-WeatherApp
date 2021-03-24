@@ -196,4 +196,5 @@ img {
 .active,
 .active:hover {
   color: #212529;
+  cursor: default;
 }
