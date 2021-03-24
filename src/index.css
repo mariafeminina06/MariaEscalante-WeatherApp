@@ -136,7 +136,7 @@ img {
   bottom: 10px;
 }
 
-.current-Celsius-temperature {
+.current-temperature {
   font-size: 100px;
 }
 
@@ -187,4 +187,10 @@ img {
 .github-link:hover {
   color: #ffffff67;
   text-decoration: underline;
+}
+
+.active,
+.active:hover {
+  color: #212529;
+  text-decoration: none;
 }
