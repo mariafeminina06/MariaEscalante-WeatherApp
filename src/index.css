@@ -71,6 +71,10 @@ h3 {
   margin: 30px 50px;
 }
 
+a {
+  text-decoration: none;
+}
+
 ul {
   list-style: none;
   text-align: left;
@@ -192,5 +196,4 @@ img {
 .active,
 .active:hover {
   color: #212529;
-  text-decoration: none;
 }
