@@ -1,28 +1,6 @@
 function formatDate(date) {
-  let days = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
   let day = days[now.getDay()];
-  let months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
+
   let month = months[now.getMonth()];
 
   let calendarDate = now.getDate();
@@ -86,31 +64,7 @@ function getTimeinDestinationCity(timestamp) {
     foreignCalendarDate = `0${foreignCalendarDate}`;
   }
 
-  let months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
   let foreignMonth = months[foreignTime.getMonth()];
-
-  let days = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
 
   let foreignDateFormat = `${foreignCalendarDate} ${foreignMonth} ${foreignTime.getFullYear()}`;
   let foreignCityTimeElement = document.querySelector("#foreign-time");
@@ -182,6 +136,31 @@ let celsiusTemp = null;
 
 let apiKey = "c92de5786a79d17709375c8c4a5c958a";
 let units = "metric";
+
+let days = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+];
+
+let months = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
 
 let currentTime = document.querySelector("#current-time");
 currentTime.innerHTML = formatDate(currentTime);
