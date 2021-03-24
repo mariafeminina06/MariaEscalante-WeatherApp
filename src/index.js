@@ -70,6 +70,9 @@ function getLocation(position) {
   let longitude = position.coords.longitude;
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${units}`;
   axios.get(apiUrl).then(updateCurrentWeatherStatus);
+
+  apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${units}`;
+  axios.get(apiUrl).then(updateForecast);
 }
 
 function handleSearch(event) {
@@ -168,6 +171,36 @@ function updateCurrentWeatherStatus(response) {
 
 function updateForecast(response) {
   console.log(response.data);
+
+  //Day 1
+  dt1 = response.data.daily[1].dt * 1000;
+  date1 = new Date(dt1);
+  let day1Label = document.querySelector("#day01");
+  day1Label.innerHTML = date1.toLocaleString("en-US", { weekday: "long" });
+
+  //Day 2
+  dt2 = response.data.daily[2].dt * 1000;
+  date2 = new Date(dt2);
+  let day2Label = document.querySelector("#day02");
+  day2Label.innerHTML = date2.toLocaleString("en-US", { weekday: "long" });
+
+  //Day 3
+  dt3 = response.data.daily[3].dt * 1000;
+  date3 = new Date(dt3);
+  let day3Label = document.querySelector("#day03");
+  day3Label.innerHTML = date3.toLocaleString("en-US", { weekday: "long" });
+
+  //Day 4
+  dt4 = response.data.daily[4].dt * 1000;
+  date4 = new Date(dt4);
+  let day4Label = document.querySelector("#day04");
+  day4Label.innerHTML = date4.toLocaleString("en-US", { weekday: "long" });
+
+  //Day 5
+  dt5 = response.data.daily[5].dt * 1000;
+  date5 = new Date(dt5);
+  let day5Label = document.querySelector("#day05");
+  day5Label.innerHTML = date5.toLocaleString("en-US", { weekday: "long" });
 }
 
 function convertToFahrenheit(event) {
