@@ -185,11 +185,13 @@ function updateForecast(response) {
   day1Icon.setAttribute("src", `${icon1Url}`);
 
   let day1MaxElement = document.querySelector("#day01-maxtemp");
-  maxTemp1 = Math.round(response.data.daily[1].temp.max);
+  day1MaxCelsius = response.data.daily[1].temp.max;
+  maxTemp1 = Math.round(day1MaxCelsius);
   day1MaxElement.innerHTML = `<strong>${maxTemp1}°</strong>`;
 
   let day1MinElement = document.querySelector("#day01-mintemp");
-  minTemp1 = Math.round(response.data.daily[1].temp.min);
+  day1MinCelsius = response.data.daily[1].temp.min;
+  minTemp1 = Math.round(day1MinCelsius);
   day1MinElement.innerHTML = `${minTemp1}°`;
 
   let day1Description = document.querySelector("#day01-weather-description");
@@ -207,11 +209,13 @@ function updateForecast(response) {
   day2Icon.setAttribute("src", `${icon2Url}`);
 
   let day2MaxElement = document.querySelector("#day02-maxtemp");
-  maxTemp2 = Math.round(response.data.daily[2].temp.max);
+  day2MaxCelsius = response.data.daily[2].temp.max;
+  maxTemp2 = Math.round(day2MaxCelsius);
   day2MaxElement.innerHTML = `<strong>${maxTemp2}°</strong>`;
 
   let day2MinElement = document.querySelector("#day02-mintemp");
-  minTemp2 = Math.round(response.data.daily[2].temp.min);
+  day2MinCelsius = response.data.daily[2].temp.min;
+  minTemp2 = Math.round(day2MinCelsius);
   day2MinElement.innerHTML = `${minTemp2}°`;
 
   let day2Description = document.querySelector("#day02-weather-description");
@@ -229,11 +233,13 @@ function updateForecast(response) {
   day3Icon.setAttribute("src", `${icon3Url}`);
 
   let day3MaxElement = document.querySelector("#day03-maxtemp");
-  maxTemp3 = Math.round(response.data.daily[3].temp.max);
+  day3MaxCelsius = response.data.daily[3].temp.max;
+  maxTemp3 = Math.round(day3MaxCelsius);
   day3MaxElement.innerHTML = `<strong>${maxTemp3}°</strong>`;
 
   let day3MinElement = document.querySelector("#day03-mintemp");
-  minTemp3 = Math.round(response.data.daily[3].temp.min);
+  day3MinCelsius = response.data.daily[3].temp.min;
+  minTemp3 = Math.round(day3MinCelsius);
   day3MinElement.innerHTML = `${minTemp3}°`;
 
   let day3Description = document.querySelector("#day03-weather-description");
@@ -251,11 +257,13 @@ function updateForecast(response) {
   day4Icon.setAttribute("src", `${icon4Url}`);
 
   let day4MaxElement = document.querySelector("#day04-maxtemp");
-  maxTemp4 = Math.round(response.data.daily[4].temp.max);
+  day4MaxCelsius = response.data.daily[4].temp.max;
+  maxTemp4 = Math.round(day4MaxCelsius);
   day4MaxElement.innerHTML = `<strong>${maxTemp4}°</strong>`;
 
   let day4MinElement = document.querySelector("#day04-mintemp");
-  minTemp4 = Math.round(response.data.daily[4].temp.min);
+  day4MinCelsius = response.data.daily[4].temp.min;
+  minTemp4 = Math.round(day4MinCelsius);
   day4MinElement.innerHTML = `${minTemp4}°`;
 
   let day4Description = document.querySelector("#day04-weather-description");
@@ -273,11 +281,13 @@ function updateForecast(response) {
   day5Icon.setAttribute("src", `${icon5Url}`);
 
   let day5MaxElement = document.querySelector("#day05-maxtemp");
-  maxTemp5 = Math.round(response.data.daily[5].temp.max);
+  day5MaxCelsius = response.data.daily[5].temp.max;
+  maxTemp5 = Math.round(day5MaxCelsius);
   day5MaxElement.innerHTML = `<strong>${maxTemp5}°</strong>`;
 
   let day5MinElement = document.querySelector("#day05-mintemp");
-  minTemp5 = Math.round(response.data.daily[5].temp.min);
+  day5MinCelsius = response.data.daily[5].temp.min;
+  minTemp5 = Math.round(day5MinCelsius);
   day5MinElement.innerHTML = `${minTemp5}°`;
 
   let day5Description = document.querySelector("#day05-weather-description");
@@ -302,6 +312,46 @@ function convertToFahrenheit(event) {
   let currentMaxTempElement = document.querySelector("#current-max-temp");
   currentMaxTempElement.innerHTML = `Max: ${maxFahrenheit}°`;
 
+  let day1MaxFahrenheit = Math.round(day1MaxCelsius * 1.8 + 32);
+  let day1MaxElement = document.querySelector("#day01-maxtemp");
+  day1MaxElement.innerHTML = `<strong>${day1MaxFahrenheit}°</strong>`;
+
+  let day1MinFahrenheit = Math.round(day1MinCelsius * 1.8 + 32);
+  let day1MinElement = document.querySelector("#day01-mintemp");
+  day1MinElement.innerHTML = `${day1MinFahrenheit}°`;
+
+  let day2MaxFahrenheit = Math.round(day2MaxCelsius * 1.8 + 32);
+  let day2MaxElement = document.querySelector("#day02-maxtemp");
+  day2MaxElement.innerHTML = `<strong>${day2MaxFahrenheit}°</strong>`;
+
+  let day2MinFahrenheit = Math.round(day2MinCelsius * 1.8 + 32);
+  let day2MinElement = document.querySelector("#day02-mintemp");
+  day2MinElement.innerHTML = `${day2MinFahrenheit}°`;
+
+  let day3MaxFahrenheit = Math.round(day3MaxCelsius * 1.8 + 32);
+  let day3MaxElement = document.querySelector("#day03-maxtemp");
+  day3MaxElement.innerHTML = `<strong>${day3MaxFahrenheit}°</strong>`;
+
+  let day3MinFahrenheit = Math.round(day3MinCelsius * 1.8 + 32);
+  let day3MinElement = document.querySelector("#day03-mintemp");
+  day3MinElement.innerHTML = `${day3MinFahrenheit}°`;
+
+  let day4MaxFahrenheit = Math.round(day4MaxCelsius * 1.8 + 32);
+  let day4MaxElement = document.querySelector("#day04-maxtemp");
+  day4MaxElement.innerHTML = `<strong>${day4MaxFahrenheit}°</strong>`;
+
+  let day4MinFahrenheit = Math.round(day4MinCelsius * 1.8 + 32);
+  let day4MinElement = document.querySelector("#day04-mintemp");
+  day4MinElement.innerHTML = `${day4MinFahrenheit}°`;
+
+  let day5MaxFahrenheit = Math.round(day5MaxCelsius * 1.8 + 32);
+  let day5MaxElement = document.querySelector("#day05-maxtemp");
+  day5MaxElement.innerHTML = `<strong>${day5MaxFahrenheit}°</strong>`;
+
+  let day5MinFahrenheit = Math.round(day5MinCelsius * 1.8 + 32);
+  let day5MinElement = document.querySelector("#day05-mintemp");
+  day5MinElement.innerHTML = `${day5MinFahrenheit}°`;
+
   fahrenheitLink.classList.add("active");
   celsiusLink.classList.remove("active");
 }
@@ -320,6 +370,36 @@ function convertToCelsius(event) {
   let currentMaxTempElement = document.querySelector("#current-max-temp");
   currentMaxTempElement.innerHTML = `Max: ${Math.round(maxCelsius)}°`;
 
+  let day1MaxElement = document.querySelector("#day01-maxtemp");
+  day1MaxElement.innerHTML = `<strong>${Math.round(day1MaxCelsius)}°</strong>`;
+
+  let day1MinElement = document.querySelector("#day01-mintemp");
+  day1MinElement.innerHTML = `${Math.round(day1MinCelsius)}°`;
+
+  let day2MaxElement = document.querySelector("#day02-maxtemp");
+  day2MaxElement.innerHTML = `<strong>${Math.round(day2MaxCelsius)}°</strong>`;
+
+  let day2MinElement = document.querySelector("#day02-mintemp");
+  day2MinElement.innerHTML = `${Math.round(day2MinCelsius)}°`;
+
+  let day3MaxElement = document.querySelector("#day03-maxtemp");
+  day3MaxElement.innerHTML = `<strong>${Math.round(day3MaxCelsius)}°</strong>`;
+
+  let day3MinElement = document.querySelector("#day03-mintemp");
+  day3MinElement.innerHTML = `${Math.round(day3MinCelsius)}°`;
+
+  let day4MaxElement = document.querySelector("#day04-maxtemp");
+  day4MaxElement.innerHTML = `<strong>${Math.round(day4MaxCelsius)}°</strong>`;
+
+  let day4MinElement = document.querySelector("#day04-mintemp");
+  day4MinElement.innerHTML = `${Math.round(day4MinCelsius)}°`;
+
+  let day5MaxElement = document.querySelector("#day05-maxtemp");
+  day5MaxElement.innerHTML = `<strong>${Math.round(day5MaxCelsius)}°</strong>`;
+
+  let day5MinElement = document.querySelector("#day05-mintemp");
+  day5MinElement.innerHTML = `${Math.round(day5MinCelsius)}°`;
+
   fahrenheitLink.classList.remove("active");
   celsiusLink.classList.add("active");
 }
@@ -329,6 +409,16 @@ let celsiusTemp = null;
 let celsiusFeel = null;
 let minCelsius = null;
 let maxCelsius = null;
+let day1MaxCelsius = null;
+let day2MaxCelsius = null;
+let day3MaxCelsius = null;
+let day4MaxCelsius = null;
+let day5MaxCelsius = null;
+let day1MinCelsius = null;
+let day2MinCelsius = null;
+let day3MinCelsius = null;
+let day4MinCelsius = null;
+let day5MinCelsius = null;
 
 let apiKey = "c92de5786a79d17709375c8c4a5c958a";
 let units = "metric";
