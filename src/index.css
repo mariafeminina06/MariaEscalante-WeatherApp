@@ -198,3 +198,7 @@ img {
   color: #212529;
   cursor: default;
 }
+
+.daily-icon {
+  width: 80px;
+}

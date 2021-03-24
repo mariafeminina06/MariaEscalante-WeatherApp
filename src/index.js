@@ -171,6 +171,7 @@ function updateCurrentWeatherStatus(response) {
 
 function updateForecast(response) {
   console.log(response.data);
+  let iconUrl = `https://openweathermap.org/img/wn/`;
 
   //Day 1
   dt1 = response.data.daily[1].dt * 1000;
@@ -178,11 +179,21 @@ function updateForecast(response) {
   let day1Label = document.querySelector("#day01");
   day1Label.innerHTML = date1.toLocaleString("en-US", { weekday: "long" });
 
+  let day1Icon = document.querySelector("#day01-icon");
+  let icon1 = response.data.daily[1].weather[0].icon;
+  let icon1Url = `${iconUrl}${icon1}.png`;
+  day1Icon.setAttribute("src", `${icon1Url}`);
+
   //Day 2
   dt2 = response.data.daily[2].dt * 1000;
   date2 = new Date(dt2);
   let day2Label = document.querySelector("#day02");
   day2Label.innerHTML = date2.toLocaleString("en-US", { weekday: "long" });
+
+  let day2Icon = document.querySelector("#day02-icon");
+  let icon2 = response.data.daily[2].weather[0].icon;
+  let icon2Url = `${iconUrl}${icon1}.png`;
+  day2Icon.setAttribute("src", `${icon2Url}`);
 
   //Day 3
   dt3 = response.data.daily[3].dt * 1000;
@@ -190,17 +201,32 @@ function updateForecast(response) {
   let day3Label = document.querySelector("#day03");
   day3Label.innerHTML = date3.toLocaleString("en-US", { weekday: "long" });
 
+  let day3Icon = document.querySelector("#day03-icon");
+  let icon3 = response.data.daily[3].weather[0].icon;
+  let icon3Url = `${iconUrl}${icon3}.png`;
+  day3Icon.setAttribute("src", `${icon3Url}`);
+
   //Day 4
   dt4 = response.data.daily[4].dt * 1000;
   date4 = new Date(dt4);
   let day4Label = document.querySelector("#day04");
   day4Label.innerHTML = date4.toLocaleString("en-US", { weekday: "long" });
 
+  let day4Icon = document.querySelector("#day04-icon");
+  let icon4 = response.data.daily[4].weather[0].icon;
+  let icon4Url = `${iconUrl}${icon4}.png`;
+  day4Icon.setAttribute("src", `${icon4Url}`);
+
   //Day 5
   dt5 = response.data.daily[5].dt * 1000;
   date5 = new Date(dt5);
   let day5Label = document.querySelector("#day05");
   day5Label.innerHTML = date5.toLocaleString("en-US", { weekday: "long" });
+
+  let day5Icon = document.querySelector("#day05-icon");
+  let icon5 = response.data.daily[5].weather[0].icon;
+  let icon5Url = `${iconUrl}${icon5}.png`;
+  day5Icon.setAttribute("src", `${icon5Url}`);
 }
 
 function convertToFahrenheit(event) {
