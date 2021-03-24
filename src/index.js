@@ -1,24 +1,56 @@
-function formatDate(date) {
-  let day = days[now.getDay()];
+function getCurrentDate() {
+  return `Today is <strong>${formatCalendarDate(
+    now
+  )}</strong>. <br />It is currently <strong>${formatHours(now)}</strong>.`;
+}
 
-  let month = months[now.getMonth()];
+function formatCalendarDate(date) {
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
 
-  let calendarDate = now.getDate();
+  let months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  let day = days[date.getDay()];
+
+  let month = months[date.getMonth()];
+
+  let calendarDate = date.getDate();
   if (calendarDate < 10) {
     calendarDate = `0${calendarDate}`;
   }
+  return `${day}, ${calendarDate} ${month} ${date.getFullYear()}`;
+}
 
-  let hours = now.getHours();
+function formatHours(timestamp) {
+  let hours = timestamp.getHours();
   if (hours < 10) {
     hours = `0${hours}`;
   }
 
-  let minutes = now.getMinutes();
+  let minutes = timestamp.getMinutes();
   if (minutes < 10) {
     minutes = `0${minutes}`;
   }
-
-  return `Today is <strong>${day}, ${calendarDate} ${month} ${now.getFullYear()}</strong>. <br />It is currently <strong>${hours}:${minutes}</strong>.`;
+  return `${hours}:${minutes}`;
 }
 
 function getNavigation() {
@@ -41,8 +73,10 @@ function handleSearch(event) {
 
 function searchInfo(city) {
   let apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
-
   axios.get(apiURL).then(updateCurrentWeatherStatus);
+
+  apiForecastURL = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=${units}`;
+  axios.get(apiForecastURL).then(updateForecast);
 }
 
 function getTimeinDestinationCity(timestamp) {
@@ -50,33 +84,24 @@ function getTimeinDestinationCity(timestamp) {
   let localOffset = now.getTimezoneOffset() * 60000;
   let utc = localTime + localOffset;
   let foreignTime = new Date(utc + timestamp);
-  let foreignHour = foreignTime.getHours();
-  if (foreignHour < 10) {
-    foreignHour = `0${foreignHour}`;
-  }
-  let foreignMinutes = foreignTime.getMinutes();
-  if (foreignMinutes < 10) {
-    foreignMinutes = `0${foreignMinutes}`;
-  }
 
   let foreignCalendarDate = foreignTime.getDate();
   if (foreignCalendarDate < 10) {
     foreignCalendarDate = `0${foreignCalendarDate}`;
   }
 
-  let foreignMonth = months[foreignTime.getMonth()];
-
-  let foreignDateFormat = `${foreignCalendarDate} ${foreignMonth} ${foreignTime.getFullYear()}`;
   let foreignCityTimeElement = document.querySelector("#foreign-time");
-  foreignCityTimeElement.innerHTML = `Time Now: ${foreignHour}${foreignMinutes}H`;
+  foreignCityTimeElement.innerHTML = `Local time: <strong>${formatHours(
+    foreignTime
+  )}</strong>`;
   let foreignDateElement = document.querySelector("#foreign-date");
-  foreignDateElement.innerHTML = `Date: ${foreignDateFormat}`;
-
-  let foreignDayElement = document.querySelector("#foreign-day");
-  foreignDayElement.innerHTML = `Day: ${days[foreignTime.getDay()]}`;
+  foreignDateElement.innerHTML = `Local Date:  <strong>${formatCalendarDate(
+    foreignTime
+  )}</strong>`;
 }
 
 function updateCurrentWeatherStatus(response) {
+  console.log(response.data);
   currentCelsiusTemp = response.data.main.temp;
   let currentTemp = Math.round(currentCelsiusTemp);
   let feelTemperature = Math.round(response.data.main.feels_like);
@@ -98,6 +123,13 @@ function updateCurrentWeatherStatus(response) {
   currentMinTempElement.innerHTML = `Min: ${currentMinTemp}°`;
   let currentMaxTempElement = document.querySelector("#current-max-temp");
   currentMaxTempElement.innerHTML = `Max: ${currentMaxTemp}°`;
+  let humidityElement = document.querySelector("#humidity");
+  humidityElement.innerHTML = `Humidity: ${response.data.main.humidity}%`;
+  let windElement = document.querySelector("#wind");
+  windElement.innerHTML = `Wind: ${Math.round(
+    response.data.wind.speed * 3.6
+  )} km/h`;
+
   let currentWeatherIconElement = document.querySelector(
     "#current-weather-icon"
   );
@@ -112,6 +144,10 @@ function updateCurrentWeatherStatus(response) {
   );
 
   let cityOffset = getTimeinDestinationCity(response.data.timezone * 1000);
+}
+
+function updateForecast(response) {
+  console.log(response);
 }
 
 function convertToFahrenheit(event) {
@@ -137,33 +173,8 @@ let celsiusTemp = null;
 let apiKey = "c92de5786a79d17709375c8c4a5c958a";
 let units = "metric";
 
-let days = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
-
-let months = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-];
-
 let currentTime = document.querySelector("#current-time");
-currentTime.innerHTML = formatDate(currentTime);
+currentTime.innerHTML = getCurrentDate(currentTime);
 
 let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", handleSearch);
