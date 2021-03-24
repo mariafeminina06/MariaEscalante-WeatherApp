@@ -202,3 +202,7 @@ img {
 .daily-icon {
   width: 80px;
 }
+
+.card-forecast {
+  height: 350px;
+}

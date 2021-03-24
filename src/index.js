@@ -184,6 +184,17 @@ function updateForecast(response) {
   let icon1Url = `${iconUrl}${icon1}.png`;
   day1Icon.setAttribute("src", `${icon1Url}`);
 
+  let day1MaxElement = document.querySelector("#day01-maxtemp");
+  maxTemp1 = Math.round(response.data.daily[1].temp.max);
+  day1MaxElement.innerHTML = `<strong>${maxTemp1}°</strong>`;
+
+  let day1MinElement = document.querySelector("#day01-mintemp");
+  minTemp1 = Math.round(response.data.daily[1].temp.min);
+  day1MinElement.innerHTML = `${minTemp1}°`;
+
+  let day1Description = document.querySelector("#day01-weather-description");
+  day1Description.innerHTML = response.data.daily[1].weather[0].description;
+
   //Day 2
   dt2 = response.data.daily[2].dt * 1000;
   date2 = new Date(dt2);
@@ -194,6 +205,17 @@ function updateForecast(response) {
   let icon2 = response.data.daily[2].weather[0].icon;
   let icon2Url = `${iconUrl}${icon1}.png`;
   day2Icon.setAttribute("src", `${icon2Url}`);
+
+  let day2MaxElement = document.querySelector("#day02-maxtemp");
+  maxTemp2 = Math.round(response.data.daily[2].temp.max);
+  day2MaxElement.innerHTML = `<strong>${maxTemp2}°</strong>`;
+
+  let day2MinElement = document.querySelector("#day02-mintemp");
+  minTemp2 = Math.round(response.data.daily[2].temp.min);
+  day2MinElement.innerHTML = `${minTemp2}°`;
+
+  let day2Description = document.querySelector("#day02-weather-description");
+  day2Description.innerHTML = response.data.daily[2].weather[0].description;
 
   //Day 3
   dt3 = response.data.daily[3].dt * 1000;
@@ -206,6 +228,17 @@ function updateForecast(response) {
   let icon3Url = `${iconUrl}${icon3}.png`;
   day3Icon.setAttribute("src", `${icon3Url}`);
 
+  let day3MaxElement = document.querySelector("#day03-maxtemp");
+  maxTemp3 = Math.round(response.data.daily[3].temp.max);
+  day3MaxElement.innerHTML = `<strong>${maxTemp3}°</strong>`;
+
+  let day3MinElement = document.querySelector("#day03-mintemp");
+  minTemp3 = Math.round(response.data.daily[3].temp.min);
+  day3MinElement.innerHTML = `${minTemp3}°`;
+
+  let day3Description = document.querySelector("#day03-weather-description");
+  day3Description.innerHTML = response.data.daily[3].weather[0].description;
+
   //Day 4
   dt4 = response.data.daily[4].dt * 1000;
   date4 = new Date(dt4);
@@ -217,6 +250,17 @@ function updateForecast(response) {
   let icon4Url = `${iconUrl}${icon4}.png`;
   day4Icon.setAttribute("src", `${icon4Url}`);
 
+  let day4MaxElement = document.querySelector("#day04-maxtemp");
+  maxTemp4 = Math.round(response.data.daily[4].temp.max);
+  day4MaxElement.innerHTML = `<strong>${maxTemp4}°</strong>`;
+
+  let day4MinElement = document.querySelector("#day04-mintemp");
+  minTemp4 = Math.round(response.data.daily[4].temp.min);
+  day4MinElement.innerHTML = `${minTemp4}°`;
+
+  let day4Description = document.querySelector("#day04-weather-description");
+  day4Description.innerHTML = response.data.daily[4].weather[0].description;
+
   //Day 5
   dt5 = response.data.daily[5].dt * 1000;
   date5 = new Date(dt5);
@@ -227,6 +271,17 @@ function updateForecast(response) {
   let icon5 = response.data.daily[5].weather[0].icon;
   let icon5Url = `${iconUrl}${icon5}.png`;
   day5Icon.setAttribute("src", `${icon5Url}`);
+
+  let day5MaxElement = document.querySelector("#day05-maxtemp");
+  maxTemp5 = Math.round(response.data.daily[5].temp.max);
+  day5MaxElement.innerHTML = `<strong>${maxTemp5}°</strong>`;
+
+  let day5MinElement = document.querySelector("#day05-mintemp");
+  minTemp5 = Math.round(response.data.daily[5].temp.min);
+  day5MinElement.innerHTML = `${minTemp5}°`;
+
+  let day5Description = document.querySelector("#day05-weather-description");
+  day5Description.innerHTML = response.data.daily[5].weather[0].description;
 }
 
 function convertToFahrenheit(event) {
