@@ -99,7 +99,7 @@ footer {
   width: 800px;
 }
 
-img {
+.forecast-image {
   width: 350px;
   display: block;
   margin: 20px auto;
