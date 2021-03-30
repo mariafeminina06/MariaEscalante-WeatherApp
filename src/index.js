@@ -101,7 +101,7 @@ function getTimeinDestinationCity(timestamp) {
   }
 
   let foreignCityTimeElement = document.querySelector("#foreign-time");
-  foreignCityTimeElement.innerHTML = `Local time: <strong>${formatHours(
+  foreignCityTimeElement.innerHTML = `Local Time: <strong>${formatHours(
     foreignTime
   )}</strong>`;
   let foreignDateElement = document.querySelector("#foreign-date");
